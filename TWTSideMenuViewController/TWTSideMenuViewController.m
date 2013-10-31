@@ -157,10 +157,35 @@ static NSTimeInterval const kDefaultSwapAnimationClosedDuration = 0.35;
         if (self.open) {
             return self.menuViewController.preferredStatusBarStyle;
         } else {
-            return self.mainViewController.preferredStatusBarStyle;
+            if ([self.mainViewController isKindOfClass:[UINavigationController class]]) {
+                UINavigationController *navController = (UINavigationController *)self.mainViewController;
+                return [navController.visibleViewController preferredStatusBarStyle];
+            } else if ([self.mainViewController isKindOfClass:[UIViewController class]]) {
+                return [self.mainViewController preferredStatusBarStyle];
+            }
+            return UIStatusBarStyleDefault;
         }
     } else {
         return UIStatusBarStyleDefault;
+    }
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    if ([self respondsToSelector:@selector(prefersStatusBarHidden)]) {
+        if (self.open) {
+            return [self.menuViewController prefersStatusBarHidden];
+        } else {
+            if ([self.mainViewController isKindOfClass:[UINavigationController class]]) {
+                UINavigationController *navController = (UINavigationController *)self.mainViewController;
+                return [navController.visibleViewController prefersStatusBarHidden];
+            } else if ([self.mainViewController isKindOfClass:[UIViewController class]]) {
+                return [self.mainViewController prefersStatusBarHidden];
+            }
+            return NO;
+        }
+    } else {
+        return NO;
     }
 }
 
