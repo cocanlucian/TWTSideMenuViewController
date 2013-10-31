@@ -386,7 +386,7 @@ static NSTimeInterval const kDefaultSwapAnimationClosedDuration = 0.35;
     button.frame = self.containerView.frame;
     
     [button addTarget:self action:@selector(closeButtonTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
-    [button addTarget:self action:@selector(closeButtonTouchedDown) forControlEvents:UIControlEventTouchDown];
+//    [button addTarget:self action:@selector(closeButtonTouchedDown) forControlEvents:UIControlEventTouchDown];
     [button addTarget:self action:@selector(closeButtonTouchUpOutside) forControlEvents:UIControlEventTouchUpOutside];
     
     [self.view addSubview:button];
@@ -403,10 +403,10 @@ static NSTimeInterval const kDefaultSwapAnimationClosedDuration = 0.35;
     [self closeMenuAnimated:YES completion:nil];
 }
 
-- (void)closeButtonTouchedDown
-{
-    self.closeOverlayButton.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
-}
+//- (void)closeButtonTouchedDown
+//{
+//    self.closeOverlayButton.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4];
+//}
 
 - (void)closeButtonTouchUpOutside
 {
